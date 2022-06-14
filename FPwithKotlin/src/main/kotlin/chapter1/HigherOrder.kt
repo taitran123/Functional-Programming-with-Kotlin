@@ -1,4 +1,4 @@
-package chappter1
+package chapter1
 
 private fun Int.times(fn :()->Unit){
     for (i in 1..this){
