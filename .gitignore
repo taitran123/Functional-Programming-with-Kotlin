@@ -1,0 +1,4 @@
+/FPwithKotlin/.gradle/*
+/.idea/gradle.xml
+/.idea/*
+/FPwithKotlin/build/*
