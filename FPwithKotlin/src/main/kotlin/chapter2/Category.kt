@@ -16,3 +16,4 @@ fun <A> intersection(set1: Predicate<A>, set2: Predicate<A>): Predicate<A> = {
     set1(it)&&set2(it)
 }
 
+//fun <A: Any> myLazy(fn: () -> A): () -> A
