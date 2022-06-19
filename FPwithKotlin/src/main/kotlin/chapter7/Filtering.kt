@@ -24,6 +24,25 @@ fun <T> FList<T>.take(n: Int): FList<T> = match(
     }
 )
 
+fun <T> FList<T>.first() = head()
+fun <T> FList<T>.last() = skip(size()-1).head()
+
+fun <T> FList<T>.firstWithPredicate(predicate:Predicate<T>): T? = match(
+        whenNil = {null},
+        whenCons = {head, tail ->
+            if (predicate(head)){
+                head
+            }else{
+                tail.firstWithPredicate(predicate)
+            }
+        }
+)
+
+
+fun <T> FList<T>.takeLastWithPredicate(predicate: Predicate<T>):T? = filter(predicate).last()
+fun <T> FList<T>.get(i:Int):T=skip(i).head()?:throw ArrayIndexOutOfBoundsException()
+
+
 fun <T> FList<T>.takeLast(n: Int): FList<T> = match(
     whenNil = { FList.empty()},
     whenCons = {head, tail ->
@@ -37,8 +56,11 @@ fun <T> FList<T>.takeLast(n: Int): FList<T> = match(
 
 fun main() {
     FList.of(1,2,3,4,5,6,7,8,9)
-        .takeLast(4)
+        .takeLast(1)
 //        .filter { it%3==0 }
         .forEach { println(it) }
+    val list =  FList.of(1,2,3,4,5,6,7,8,9)
+    println("head ${list.firstWithPredicate { it%2==0 }}")
+    println("last ${list.takeLastWithPredicate{ it%2==0 }}")
 
 }

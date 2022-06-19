@@ -55,6 +55,17 @@ fun <T> FList<T>.forEach(fn: (T)->Unit):Unit = match(
 
 )
 
+fun <T> FList<T>.skip(n :Int):FList<T> = match(
+        whenNil = { FList.empty()},
+        whenCons = {head, tail ->
+            if(n>0){
+                tail.skip(n-1)
+            }else{
+                FCons(head, tail)
+            }
+        }
+)
+
 fun main() {
     val emptyList = FList.empty<Int>()
     val singleElementList = FList.of(1)
