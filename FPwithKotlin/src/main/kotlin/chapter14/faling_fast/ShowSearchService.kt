@@ -4,7 +4,6 @@ import chapter14.tools.TvShowFetcher
 import chapter14.tools.TvShowParser
 import chapter14.tools.flatMap
 import chapter14.tools.models.ScoredShow
-import chapter8.pipe
 import chapter9.*
 import kotlinx.serialization.SerializationException
 import java.io.IOException
