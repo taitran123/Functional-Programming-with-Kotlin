@@ -12,4 +12,7 @@ fun <T1, T2, T3, T4, R> Fun4<T1, T2, T3, T4, R>.curry():(T1) -> (T2) -> (T3) -> 
 fun <T1, T2, T3, T4, T5,R> Fun5<T1, T2, T3, T4, T5, R>.curry():(T1) -> (T2) -> (T3) -> (T4) ->(T5)-> R = {t1:T1 -> {t2: T2, t3:T3 , t4: T4, t5: T5-> this (t1, t2, t3, t4, t5)}.curry()}
 
 
-
+typealias Chain2<T1, T2, R> = (T1) -> (T2) -> R
+typealias Chain3<T1, T2, T3, R> = (T1) -> (T2) -> (T3) -> R
+typealias Chain4<T1, T2, T3, T4, R> = (T1) -> (T2) -> (T3) -> (T4) -> R
+typealias Chain5<T1, T2, T3, T4, T5, R> = (T1) -> (T2) -> (T3) -> (T4) -> (T5) -> R
