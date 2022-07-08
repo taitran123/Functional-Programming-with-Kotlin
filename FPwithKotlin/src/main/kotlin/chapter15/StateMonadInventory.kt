@@ -48,21 +48,21 @@ val addSku: (Product) -> State<Int, SkuProduct> = {
     }
 }
 
-fun inventory(list: FList<Product>): State<Int, FList<SkuProduct>> =
-    when (list) {
-        is Nil -> State.lift(Nil)
-        is FCons<Product> -> {
-            val head = State.lift<Int, Product>(list.head).flatMap(addSku)
-            val tail = inventory(list.tail)
-            head.zip(tail) {a: SkuProduct, b: FList<SkuProduct> -> FCons(a,b)}
-        }
-    }
+//fun inventory(list: FList<Product>): State<Int, FList<SkuProduct>> =
+//    when (list) {
+//        is Nil -> State.lift(Nil)
+//        is FCons<Product> -> {
+//            val head = State.lift<Int, Product>(list.head).flatMap(addSku)
+//            val tail = inventory(list.tail)
+//            head.zip(tail) {a: SkuProduct, b: FList<SkuProduct> -> FCons(a,b)}
+//        }
+//    }
 
 fun main() {
     inventoryMapWithCount(products).forEach (::println)
     println("=====111======")
     listInventory(products)(0).second.forEach(::println)
     println("======222=====")
-    inventory(products)(0).first.forEach ( ::println )
+//    inventory(products)(0).first.forEach ( ::println )
 
 }
