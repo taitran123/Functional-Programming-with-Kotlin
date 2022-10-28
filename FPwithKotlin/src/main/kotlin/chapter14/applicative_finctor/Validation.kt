@@ -8,6 +8,14 @@ data class User(
     val email: String
 )
 
+data class User2(
+    val id: Int,
+    val name: String,
+    val email: String,
+    val phone: String
+)
+
+
 class ValidationException(msg:String) : Exception(msg)
 
 fun validateName(name: String): ResultAp<ValidationException, String> =
@@ -25,20 +33,20 @@ fun validateEmail(email: String): ResultAp<ValidationException, String> =
     }
 
 
-fun main2() {
+fun main() {
     val userBuilder = ::User.curry()
     val userApplicative = ResultAp.success(userBuilder)
     val idApp = ResultAp.success(1)
     validateEmail("thtai@grandm.vn")
         .ap(
-            validateName("lksdd").ap(
+            validateName("dd").ap(
                 idApp.ap(userApplicative)))
         .errorMap { println("Error : $it"); it }
         .successMap { println("Success $it") }
 }
 
-fun main() {
-    val userBuilder = ::User.curry()
+fun main2() {
+    val userBuilder = ::User2.curry()
     val userApplicative = ResultAp.success(userBuilder)
     val idAp = ResultAp.success(1)
     (userApplicative appl idAp appl validateName("xx") appl validateName("thtaigrandm.cn")).errorMap { println("Error : $it");it }.successMap { println("Success $it") }

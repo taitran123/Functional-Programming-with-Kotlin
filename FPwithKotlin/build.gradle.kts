@@ -15,7 +15,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 }
 
 tasks.test {
